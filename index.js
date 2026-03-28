@@ -11,6 +11,7 @@ import homeRouter from "./routes/homeRoute.js";
 import authRouter from "./routes/authRoute.js";
 import userRouter from "./routes/userRoute.js";
 import orderRouter from "./routes/orderRoute.js";
+import seedAdmin from "./config/seedAdmin.js";
 
 const app = express();
 app.use(cors());
@@ -46,6 +47,7 @@ app.use("/users", authenticateAdmin, userRouter);
 
 const startServer = async () => {
   await dbConnect();
+  await seedAdmin();
   app.listen(5000, () => {
     console.log("Server Started");
   });
